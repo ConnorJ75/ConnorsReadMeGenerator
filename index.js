@@ -27,7 +27,7 @@ const questions = [
     {
         type: "list",
         name: "license",
-        message: "What is the license you are using?",
+        message: "What is the license you are using? (use arrow keys)",
         choices: ["MIT", "Apache2.0", "Boost1.0", "NPL2.0", "BSD2", "BSD3"]
     },  
     {
@@ -55,14 +55,12 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    //console.log(`\nFile Name: ${fileName} \nData: \n`);
-    console.log(data);
+    fs.writeFileSync(fileName, data);
 }
 
 // TODO: Create a function to initialize app
 function init() {
     inquirer.prompt(questions).then((responses)=>{
-        console.log(responses);
         writeToFile("./README.md", generateMarkdown({responses}))
     });
 }
